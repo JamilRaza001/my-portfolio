@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { lora, outfit, jetbrainsMono, dmSans } from './fonts';
+import { Navbar } from '@/components/layout/Navbar';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -60,6 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
+        <Navbar />
         {children}
       </body>
     </html>
