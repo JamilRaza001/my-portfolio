@@ -15,11 +15,11 @@
 | Phase | Tasks | Completed |
 |-------|-------|-----------|
 | Phase 1 — Foundation  | 5 tasks | 5/5 ✓ |
-| Phase 2 — Layout      | 3 tasks | 0/3 |
+| Phase 2 — Layout      | 3 tasks | 3/3 ✓ |
 | Phase 3 — Sections    | 7 tasks | 0/7 |
 | Phase 4 — Polish      | 5 tasks | 0/5 |
 | Phase 5 — Deploy      | 4 tasks | 0/4 |
-| **Total**             | **24 tasks** | **5/24** |
+| **Total**             | **24 tasks** | **8/24** |
 
 ---
 
@@ -220,7 +220,7 @@ npm install framer-motion lucide-react clsx tailwind-merge
 **Goal:** `app/layout.tsx` aur `app/page.tsx` production-ready structure ke saath setup karo
 
 **Done when:**
-- [ ] `app/layout.tsx` has:
+- [x] `app/layout.tsx` has:
   - All 4 font variables on `<html>` tag
   - Flash-prevention script in `<head>`
   - Complete `metadata` export (title, description, keywords, OG tags, twitter card)
@@ -234,12 +234,17 @@ npm install framer-motion lucide-react clsx tailwind-merge
       Skip to content
     </a>
     ```
-- [ ] `app/page.tsx` has `<main id="main-content">` wrapping all section placeholders
-- [ ] Section placeholders added with correct IDs:
+- [x] `app/page.tsx` has `<main id="main-content">` wrapping all section placeholders
+- [x] Section placeholders added with correct IDs:
   `#hero` `#about` `#projects` `#skills` `#experience` `#certifications` `#contact`
-- [ ] `<body>` has `font-body` class applied as default body font
-- [ ] `npm run build` completes without errors or warnings
-- [ ] Commit: `feat(layout): add root layout with metadata, skip link, and page structure`
+- [x] `<body>` has `font-body` class applied as default body font
+- [x] `npm run build` completes without errors or warnings
+- [x] Commit: `feat(layout): add root layout with metadata, skip link, and page structure`
+
+> **Implementation note:** CSS color variables converted from hex (`#FAFAFA`) to
+> RGB-channel format (`250 250 250`) and Tailwind config updated to
+> `rgb(var(--color-bg) / <alpha-value>)`. This enables `bg-token/opacity` modifiers
+> (e.g. `bg-bg/80`) across all components. `scroll-behavior: smooth` added to `html`.
 
 ---
 
@@ -250,25 +255,25 @@ npm install framer-motion lucide-react clsx tailwind-merge
 **Goal:** Sticky responsive navbar — desktop links + mobile hamburger menu + ThemeToggle + active section tracking
 
 **Done when:**
-- [ ] `components/layout/Navbar.tsx` created
-- [ ] Desktop layout: logo left (`JRA` in `font-heading text-accent`) · nav links center-right · ThemeToggle rightmost
-- [ ] Nav links: `Projects · Experience · Skills · Contact` — smooth scroll on click
-- [ ] Navbar is sticky: `fixed top-0 w-full z-50`
-- [ ] Background: `bg-bg/80 backdrop-blur-sm` at all times
-- [ ] Border bottom `border-b border-border` appears after 20px scroll (JS scroll event listener in `useEffect`)
-- [ ] Mobile (< 768px): logo + hamburger icon only — nav links hidden
-- [ ] Mobile hamburger click: full-screen overlay opens with all nav links stacked
-- [ ] Overlay: `bg-bg`, links `text-2xl font-heading`, close button (X icon) top-right
-- [ ] Overlay open: `document.body.style.overflow = 'hidden'` — scroll locked
-- [ ] Overlay close: on link click, ESC key, or outside tap
-- [ ] `useEffect` cleanup removes overflow lock
-- [ ] Active section tracking: `IntersectionObserver` on each section ID — active link has `text-ink border-b border-accent`
-- [ ] Overlay animation: Framer Motion `AnimatePresence` with slide or fade
-- [ ] `<nav>` has `aria-label="Main navigation"`
-- [ ] All links keyboard-focusable with visible focus ring
-- [ ] Verify: desktop links scroll correctly to each section
-- [ ] Verify: mobile menu opens, link clicked, menu closes, section scrolled to
-- [ ] Commit: `feat(navbar): add responsive navbar with mobile menu and active section tracking`
+- [x] `components/layout/Navbar.tsx` created
+- [x] Desktop layout: logo left (`JRA` in `font-heading text-accent`) · nav links center-right · ThemeToggle rightmost
+- [x] Nav links: `Projects · Experience · Skills · Contact` — smooth scroll on click
+- [x] Navbar is sticky: `fixed top-0 w-full z-50`
+- [x] Background: `bg-bg/80 backdrop-blur-sm` at all times
+- [x] Border bottom `border-b border-border` appears after 20px scroll (JS scroll event listener in `useEffect`)
+- [x] Mobile (< 768px): logo + hamburger icon only — nav links hidden
+- [x] Mobile hamburger click: full-screen overlay opens with all nav links stacked
+- [x] Overlay: `bg-bg`, links `text-2xl font-heading`, close button (X icon) top-right
+- [x] Overlay open: `document.body.style.overflow = 'hidden'` — scroll locked
+- [x] Overlay close: on link click, ESC key, or outside tap
+- [x] `useEffect` cleanup removes overflow lock
+- [x] Active section tracking: `IntersectionObserver` on each section ID — active link has `text-ink border-b border-accent`
+- [x] Overlay animation: Framer Motion `AnimatePresence` with slide or fade
+- [x] `<nav>` has `aria-label="Main navigation"`
+- [x] All links keyboard-focusable with visible focus ring
+- [x] Verify: desktop links scroll correctly to each section
+- [x] Verify: mobile menu opens, link clicked, menu closes, section scrolled to
+- [x] Commit: `feat(navbar): add responsive navbar with mobile menu and active section tracking`
 
 ---
 
@@ -279,15 +284,19 @@ npm install framer-motion lucide-react clsx tailwind-merge
 **Goal:** Simple footer with social links, copyright, aur "Open to work" status badge
 
 **Done when:**
-- [ ] `components/layout/Footer.tsx` created
-- [ ] Content: copyright line + GitHub / LinkedIn / Email icon links
-- [ ] "Open to remote work" green dot + text — small status badge
-- [ ] Icons: Lucide React `Github`, `Linkedin`, `Mail`
-- [ ] All icon links: `aria-label` present (e.g. `"Visit GitHub profile"`)
-- [ ] All links: `target="_blank" rel="noopener noreferrer"`
-- [ ] Footer added to `app/page.tsx` below `<main>`
-- [ ] Responsive: stacked on mobile, row on desktop
-- [ ] Commit: `feat(footer): add footer with social links and availability badge`
+- [x] `components/layout/Footer.tsx` created
+- [x] Content: copyright line + GitHub / LinkedIn / Email icon links
+- [x] "Open to remote work" green dot + text — small status badge
+- [x] Icons: GitHub + LinkedIn as inline SVG, `Mail` from Lucide (see note below)
+- [x] All icon links: `aria-label` present (e.g. `"Visit GitHub profile"`)
+- [x] All links: `target="_blank" rel="noopener noreferrer"`
+- [x] Footer added to `app/page.tsx` below `<main>`
+- [x] Responsive: stacked on mobile, row on desktop
+- [x] Commit: `feat(footer): add footer with social links and availability badge`
+
+> **Icon note:** `lucide-react` (installed version) does NOT export `Github` or `Linkedin`
+> brand icons. Use inline SVG for these two everywhere in the project (Footer, Contact section).
+> `Mail`, `MapPin`, and all non-brand icons are available from lucide-react normally.
 
 ---
 

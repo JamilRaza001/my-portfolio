@@ -513,7 +513,7 @@ const response = await fetch(`https://formspree.io/f/${process.env.NEXT_PUBLIC_F
 
 | Section        | Component          | Status |
 |----------------|--------------------|--------|
-| Navbar         | Navbar.tsx         | [ ]    |
+| Navbar         | Navbar.tsx         | [x]    |
 | Hero           | Hero.tsx           | [ ]    |
 | About          | About.tsx          | [ ]    |
 | Skills         | Skills.tsx         | [ ]    |
@@ -521,10 +521,41 @@ const response = await fetch(`https://formspree.io/f/${process.env.NEXT_PUBLIC_F
 | Experience     | Experience.tsx     | [ ]    |
 | Certifications | Certifications.tsx | [ ]    |
 | Contact        | Contact.tsx        | [ ]    |
-| Footer         | Footer.tsx         | [ ]    |
-| Theme Toggle   | ThemeToggle.tsx    | [ ]    |
+| Footer         | Footer.tsx         | [x]    |
+| Theme Toggle   | ThemeToggle.tsx    | [x]    |
 
 ---
 
-*Last updated: Based on design planning discussion — May 2026*
+## Known Constraints (discovered during build)
+
+### lucide-react — No Brand Icons
+The installed version of `lucide-react` does **not** export `Github` or `Linkedin`.
+Use inline SVG for these two icons wherever needed (Footer, Contact section).
+All other icons (`Mail`, `MapPin`, `Sun`, `Moon`, `Menu`, `X`, `ChevronDown`, etc.) work normally.
+
+```tsx
+// ✅ Use this pattern for GitHub/LinkedIn icons
+const IconGithub = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385..." />
+  </svg>
+);
+// Copy exact SVG from components/layout/Footer.tsx
+```
+
+### CSS Color Variables — RGB Channel Format
+Color variables in `globals.css` use space-separated RGB channels (not hex):
+```css
+--color-bg: 250 250 250;   /* NOT #FAFAFA */
+```
+Tailwind config uses `rgb(var(--color-bg) / <alpha-value>)` format.
+This enables opacity modifiers: `bg-bg/80`, `border-accent/40`, `text-muted/60`.
+**Do not revert to hex format** — opacity modifiers will break.
+
+### LinkedIn Profile URL
+Correct URL: `https://www.linkedin.com/in/jamilrazaa`
+
+---
+
+*Last updated: Phase 2 complete — May 2026*
 *Maintainer: Muhammad Jamil Raza Attari*
