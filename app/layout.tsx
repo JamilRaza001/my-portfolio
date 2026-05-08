@@ -3,6 +3,7 @@ import { lora, outfit, jetbrainsMono, dmSans } from './fonts';
 import './globals.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://jamil-portfolio.vercel.app'),
   title: 'Muhammad Jamil Raza Attari — AI/ML Engineer',
   description:
     'AI/ML Engineer specialized in Agentic AI, RAG systems, and Computer Vision. Based in Karachi, Pakistan. Open to remote roles and freelance.',
