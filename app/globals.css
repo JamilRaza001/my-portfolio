@@ -4,36 +4,40 @@
 
 @layer base {
   :root {
-    --color-bg:         #FAFAFA;
-    --color-surface:    #F3F4F8;
-    --color-accent:     #1740D4;
-    --color-accent-sub: #EEF0FF;
-    --color-ink:        #080918;
-    --color-muted:      #44445A;
-    --color-border:     #E8E8EF;
-    --color-card:       #FFFFFF;
+    --color-bg:         250 250 250;
+    --color-surface:    243 244 248;
+    --color-accent:     23 64 212;
+    --color-accent-sub: 238 240 255;
+    --color-ink:        8 9 24;
+    --color-muted:      68 68 90;
+    --color-border:     232 232 239;
+    --color-card:       255 255 255;
 
     --font-heading: var(--font-heading-light);
     --font-body:    var(--font-body-light);
   }
 
   .dark {
-    --color-bg:         #0C0C16;
-    --color-surface:    #101018;
-    --color-accent:     #05D4B4;
-    --color-accent-sub: #0D2420;
-    --color-ink:        #F0F0FA;
-    --color-muted:      #8888AA;
-    --color-border:     #1E1E2E;
-    --color-card:       #101018;
+    --color-bg:         12 12 22;
+    --color-surface:    16 16 24;
+    --color-accent:     5 212 180;
+    --color-accent-sub: 13 36 32;
+    --color-ink:        240 240 250;
+    --color-muted:      136 136 170;
+    --color-border:     30 30 46;
+    --color-card:       16 16 24;
 
     --font-heading: var(--font-heading-dark);
     --font-body:    var(--font-body-dark);
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    background-color: var(--color-bg);
-    color: var(--color-ink);
+    background-color: rgb(var(--color-bg));
+    color: rgb(var(--color-ink));
   }
 
   * {

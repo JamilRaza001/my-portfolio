@@ -9,14 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        bg:           'var(--color-bg)',
-        surface:      'var(--color-surface)',
-        accent:       'var(--color-accent)',
-        'accent-sub': 'var(--color-accent-sub)',
-        ink:          'var(--color-ink)',
-        muted:        'var(--color-muted)',
-        border:       'var(--color-border)',
-        card:         'var(--color-card)',
+        bg:           'rgb(var(--color-bg) / <alpha-value>)',
+        surface:      'rgb(var(--color-surface) / <alpha-value>)',
+        accent:       'rgb(var(--color-accent) / <alpha-value>)',
+        'accent-sub': 'rgb(var(--color-accent-sub) / <alpha-value>)',
+        ink:          'rgb(var(--color-ink) / <alpha-value>)',
+        muted:        'rgb(var(--color-muted) / <alpha-value>)',
+        border:       'rgb(var(--color-border) / <alpha-value>)',
+        card:         'rgb(var(--color-card) / <alpha-value>)',
       },
       fontFamily: {
         heading: ['var(--font-heading)'],

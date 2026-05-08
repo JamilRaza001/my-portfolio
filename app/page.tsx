@@ -1,7 +1,13 @@
 export default function Home() {
   return (
     <main id="main-content">
-      <p>Portfolio coming soon.</p>
+      <section id="hero" />
+      <section id="about" />
+      <section id="projects" />
+      <section id="skills" />
+      <section id="experience" />
+      <section id="certifications" />
+      <section id="contact" />
     </main>
   );
 }
