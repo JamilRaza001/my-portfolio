@@ -14,12 +14,12 @@
 
 | Phase | Tasks | Completed |
 |-------|-------|-----------|
-| Phase 1 — Foundation  | 5 tasks | 0/5 |
+| Phase 1 — Foundation  | 5 tasks | 5/5 ✓ |
 | Phase 2 — Layout      | 3 tasks | 0/3 |
 | Phase 3 — Sections    | 7 tasks | 0/7 |
 | Phase 4 — Polish      | 5 tasks | 0/5 |
 | Phase 5 — Deploy      | 4 tasks | 0/4 |
-| **Total**             | **24 tasks** | **0/24** |
+| **Total**             | **24 tasks** | **5/24** |
 
 ---
 
@@ -45,20 +45,20 @@ npm install framer-motion lucide-react clsx tailwind-merge
 ```
 
 **Done when:**
-- [ ] `next dev` runs without errors at `localhost:3000`
-- [ ] TypeScript strict mode enabled in `tsconfig.json` (`"strict": true`)
-- [ ] `@/` path alias working — `import X from '@/components/X'` resolves correctly
-- [ ] `tailwind.config.ts` has `content` array covering `./app/**` and `./components/**`
-- [ ] ESLint config present, `npm run lint` runs without errors
-- [ ] `lib/utils.ts` created with `cn()` helper:
+- [x] `next dev` runs without errors at `localhost:3000`
+- [x] TypeScript strict mode enabled in `tsconfig.json` (`"strict": true`)
+- [x] `@/` path alias working — `import X from '@/components/X'` resolves correctly
+- [x] `tailwind.config.ts` has `content` array covering `./app/**` and `./components/**`
+- [x] ESLint config present, `npm run lint` runs without errors
+- [x] `lib/utils.ts` created with `cn()` helper:
   ```ts
   import { clsx } from 'clsx';
   import { twMerge } from 'tailwind-merge';
   export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
   ```
-- [ ] `.gitignore` includes `.env.local`
-- [ ] Git initialized, initial commit made: `chore: initialize next.js portfolio project`
-- [ ] Default Next.js boilerplate (page.tsx content, globals.css defaults) wiped clean
+- [x] `.gitignore` includes `.env.local`
+- [x] Git initialized, initial commit made: `chore: initialize next.js portfolio project`
+- [x] Default Next.js boilerplate (page.tsx content, globals.css defaults) wiped clean
 
 ---
 
@@ -69,26 +69,26 @@ npm install framer-motion lucide-react clsx tailwind-merge
 **Goal:** Charo fonts load karo via `next/font` aur CSS variables ke through accessible banao
 
 **Done when:**
-- [ ] `app/fonts.ts` file created with all 4 font declarations:
+- [x] `app/fonts.ts` file created with all 4 font declarations:
   - `lora` → variable `--font-heading-light`
   - `outfit` → variable `--font-body-light`
   - `jetbrainsMono` → variable `--font-heading-dark`
   - `dmSans` → variable `--font-body-dark`
-- [ ] All fonts use `display: 'swap'`
-- [ ] All 4 font variables injected on `<html>` tag in `app/layout.tsx`
-- [ ] `globals.css` defines:
+- [x] All fonts use `display: 'swap'`
+- [x] All 4 font variables injected on `<html>` tag in `app/layout.tsx`
+- [x] `globals.css` defines:
   ```css
   :root  { --font-heading: var(--font-heading-light); --font-body: var(--font-body-light); }
   .dark  { --font-heading: var(--font-heading-dark);  --font-body: var(--font-body-dark);  }
   ```
-- [ ] `tailwind.config.ts` extends `fontFamily`:
+- [x] `tailwind.config.ts` extends `fontFamily`:
   ```ts
   fontFamily: { heading: ['var(--font-heading)'], body: ['var(--font-body)'] }
   ```
 - [ ] Verify: add temp `<h1 className="font-heading">Test</h1>` — Lora renders in browser
 - [ ] Verify: add `.dark` class to `<html>` manually — JetBrains Mono renders for h1
 - [ ] Temp test elements removed after verification
-- [ ] Commit: `feat(fonts): add dual-mode font system via next/font`
+- [x] Commit: `feat(fonts): add dual-mode font system via next/font`
 
 ---
 
@@ -99,7 +99,7 @@ npm install framer-motion lucide-react clsx tailwind-merge
 **Goal:** Full color token system in CSS variables aur Tailwind custom colors — koi hardcoded hex allowed nahi
 
 **Done when:**
-- [ ] `app/globals.css` has complete `:root` block (light mode):
+- [x] `app/globals.css` has complete `:root` block (light mode):
   ```css
   --color-bg: #FAFAFA;
   --color-surface: #F3F4F8;
@@ -110,7 +110,7 @@ npm install framer-motion lucide-react clsx tailwind-merge
   --color-border: #E8E8EF;
   --color-card: #FFFFFF;
   ```
-- [ ] `globals.css` has complete `.dark` block (dark mode):
+- [x] `globals.css` has complete `.dark` block (dark mode):
   ```css
   --color-bg: #0C0C16;
   --color-surface: #101018;
@@ -121,15 +121,15 @@ npm install framer-motion lucide-react clsx tailwind-merge
   --color-border: #1E1E2E;
   --color-card: #101018;
   ```
-- [ ] `tailwind.config.ts` `extend.colors` maps all 8 tokens to CSS variables
-- [ ] `globals.css` base layer has:
+- [x] `tailwind.config.ts` `extend.colors` maps all 8 tokens to CSS variables
+- [x] `globals.css` base layer has:
   ```css
   body { background-color: var(--color-bg); color: var(--color-ink); }
   * { transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease; }
   ```
 - [ ] Verify: `<div className="bg-bg text-ink">` renders with correct light colors
 - [ ] Verify: toggle `.dark` on `<html>` — colors switch correctly
-- [ ] Commit: `feat(tokens): add full color token system for dual-mode theme`
+- [x] Commit: `feat(tokens): add full color token system for dual-mode theme`
 
 ---
 
@@ -140,7 +140,7 @@ npm install framer-motion lucide-react clsx tailwind-merge
 **Goal:** Saara static content TypeScript data files mein move karo — koi hardcoded strings JSX mein nahi
 
 **Done when:**
-- [ ] `data/projects.ts` created with `Project` interface and all 6 projects:
+- [x] `data/projects.ts` created with `Project` interface and all 6 projects:
   ```ts
   export interface Project {
     id: string; title: string; category: string;
@@ -154,22 +154,22 @@ npm install framer-motion lucide-react clsx tailwind-merge
   - Heart Disease Dashboard (`featured: true`, no `liveUrl`)
   - Real Estate Prediction (`featured: false`)
   - Secure Data Encryption (`featured: false`)
-- [ ] `data/skills.ts` created with `SkillCategory` interface and 4 categories:
+- [x] `data/skills.ts` created with `SkillCategory` interface and 4 categories:
   ```ts
   export interface SkillCategory { name: string; icon: string; skills: string[]; }
   ```
   (Agentic AI · ML/DL · Data Science · MLOps)
-- [ ] `data/experience.ts` created with `ExperienceEntry` interface and all 5 entries:
+- [x] `data/experience.ts` created with `ExperienceEntry` interface and all 5 entries:
   ```ts
   export interface ExperienceEntry {
     role: string; company: string; period: string;
-    location: string; bullets?: string[]; prominent: boolean;
+    location: string; tag?: string; bullets?: string[]; prominent: boolean;
   }
   ```
-- [ ] `data/certifications.ts` created with `Certification` interface and entries
-- [ ] All data files export typed arrays — no `any`
-- [ ] `npm run type-check` passes with no errors
-- [ ] Commit: `feat(data): add typed data layer for all portfolio content`
+- [x] `data/certifications.ts` created with `Certification` interface and entries
+- [x] All data files export typed arrays — no `any`
+- [x] `npm run type-check` passes with no errors
+- [x] Commit: `feat(data): add typed data layer for all portfolio content`
 
 ---
 
@@ -180,7 +180,7 @@ npm install framer-motion lucide-react clsx tailwind-merge
 **Goal:** Working ThemeToggle component with localStorage persistence, system preference fallback, aur zero flash on reload
 
 **Done when:**
-- [ ] `app/layout.tsx` `<head>` mein flash-prevention inline script present hai:
+- [x] `app/layout.tsx` `<head>` mein flash-prevention inline script present hai:
   ```tsx
   <script dangerouslySetInnerHTML={{ __html: `
     const t = localStorage.getItem('theme');
@@ -188,21 +188,21 @@ npm install framer-motion lucide-react clsx tailwind-merge
     document.documentElement.classList.toggle('dark', d);
   `}} />
   ```
-- [ ] `components/ui/ThemeToggle.tsx` created — `'use client'` directive present
-- [ ] Toggle uses `mounted` state to prevent hydration mismatch:
+- [x] `components/ui/ThemeToggle.tsx` created — `'use client'` directive present
+- [x] Toggle uses `mounted` state to prevent hydration mismatch:
   ```ts
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); ... }, []);
   if (!mounted) return <div className="w-9 h-9" />;
   ```
-- [ ] Click handler: toggles `.dark` on `document.documentElement` AND saves to `localStorage`
-- [ ] Light mode: Moon icon (`lucide-react`) shown
-- [ ] Dark mode: Sun icon shown
-- [ ] Button has `aria-label="Toggle dark mode"` / `"Toggle light mode"` dynamically
+- [x] Click handler: toggles `.dark` on `document.documentElement` AND saves to `localStorage`
+- [x] Light mode: Moon icon (`lucide-react`) shown
+- [x] Dark mode: Sun icon shown
+- [x] Button has `aria-label="Toggle dark mode"` / `"Toggle light mode"` dynamically
 - [ ] Verify: switch to dark, refresh page — dark mode persists (no flash)
 - [ ] Verify: clear localStorage, reload — system preference applied
 - [ ] Verify: font switches — Lora in light, JetBrains Mono in dark (add temp h1 to test)
-- [ ] Commit: `feat(theme): add theme toggle with localStorage persistence and flash prevention`
+- [x] Commit: `feat(theme): add theme toggle with localStorage persistence and flash prevention`
 
 ---
 
