@@ -7,7 +7,22 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        bg:           'var(--color-bg)',
+        surface:      'var(--color-surface)',
+        accent:       'var(--color-accent)',
+        'accent-sub': 'var(--color-accent-sub)',
+        ink:          'var(--color-ink)',
+        muted:        'var(--color-muted)',
+        border:       'var(--color-border)',
+        card:         'var(--color-card)',
+      },
+      fontFamily: {
+        heading: ['var(--font-heading)'],
+        body:    ['var(--font-body)'],
+      },
+    },
   },
   plugins: [],
 };
