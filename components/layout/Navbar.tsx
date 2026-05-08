@@ -86,7 +86,7 @@ export const Navbar = () => {
                   className={cn(
                     'font-body text-sm transition-colors focus-visible:ring-2 focus-visible:ring-accent rounded',
                     isActive
-                      ? 'text-ink border-b-2 border-accent pb-0.5'
+                      ? 'text-ink border-b border-accent pb-0.5'
                       : 'text-muted hover:text-ink'
                   )}
                 >
@@ -118,10 +118,14 @@ export const Navbar = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
+            onClick={closeMenu}
             className="fixed inset-0 z-50 bg-bg flex flex-col"
           >
             {/* Overlay header */}
-            <div className="h-16 flex items-center justify-between px-6">
+            <div
+              className="h-16 flex items-center justify-between px-6"
+              onClick={(e) => e.stopPropagation()}
+            >
               <a
                 href="#hero"
                 onClick={closeMenu}
@@ -139,13 +143,16 @@ export const Navbar = () => {
             </div>
 
             {/* Overlay links */}
-            <ul className="flex flex-col items-center justify-center flex-1 gap-10">
+            <ul
+              className="flex flex-col items-center justify-center flex-1 gap-10"
+              onClick={(e) => e.stopPropagation()}
+            >
               {NAV_LINKS.map(({ label, href }) => (
                 <li key={href}>
                   <a
                     href={href}
                     onClick={closeMenu}
-                    className="font-heading text-3xl font-medium text-ink hover:text-accent transition-colors focus-visible:ring-2 focus-visible:ring-accent rounded"
+                    className="font-heading text-2xl font-medium text-ink hover:text-accent transition-colors focus-visible:ring-2 focus-visible:ring-accent rounded"
                   >
                     {label}
                   </a>
