@@ -44,7 +44,7 @@ export const Footer = () => {
           </li>
           <li>
             <a
-              href="https://linkedin.com/in/jamilraza001"
+              href="https://www.linkedin.com/in/jamilrazaa"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Visit LinkedIn profile"
