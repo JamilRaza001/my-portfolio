@@ -638,23 +638,13 @@ npm install framer-motion lucide-react clsx tailwind-merge
 **Goal:** Complete SEO setup — metadata, OG image, robots.txt, sitemap
 
 **Done when:**
-- [ ] `app/layout.tsx` metadata object complete — all fields from SPEC.md present
+- [x] `app/layout.tsx` metadata object complete — all fields from SPEC.md present
 - [ ] `og-image.png` created (1200×630px) — name + role + accent color branding
   (Use Canva / Figma: dark background, name in large white text, role subtitle, accent color accent)
 - [ ] `public/og-image.png` present and correct dimensions (`file public/og-image.png` to verify)
-- [ ] `public/robots.txt` created:
-  ```
-  User-agent: *
-  Allow: /
-  Sitemap: https://your-domain.vercel.app/sitemap.xml
-  ```
-- [ ] `app/sitemap.ts` created (Next.js built-in):
-  ```ts
-  export default function sitemap() {
-    return [{ url: 'https://your-domain.vercel.app', lastModified: new Date() }];
-  }
-  ```
-- [ ] `public/favicon.ico` present (use initials "JR" or a simple icon)
+- [x] `public/robots.txt` created: `User-agent: * / Allow: / Sitemap: https://jamil-portfolio.vercel.app/sitemap.xml`
+- [x] `app/sitemap.ts` created (Next.js built-in) — generates `/sitemap.xml` pointing to `jamil-portfolio.vercel.app`
+- [x] `public/favicon.ico` present — in `app/favicon.ico` (App Router convention, served at `/favicon.ico`)
 - [ ] Test OG tags: paste URL in https://opengraph.xyz — correct title, description, image shown
 - [ ] Commit: `feat(seo): add og image, robots.txt, sitemap, and complete metadata`
 
@@ -673,9 +663,9 @@ npm install framer-motion lucide-react clsx tailwind-merge
 - [ ] All non-hero images use default lazy loading (no `priority` unless above fold)
 - [ ] `next/image` `width` and `height` set on all Image components — no implicit sizing
 - [ ] Run `npm run build` — check `.next/analyze` for large bundles (if `@next/bundle-analyzer` installed)
-- [ ] Framer Motion: confirm `LazyMotion` + `domAnimation` used — NOT `import { motion } from 'framer-motion'`
-- [ ] No unused imports across components: run `npm run lint` → 0 warnings
-- [ ] Check `_next/static` chunks in Network tab — main JS chunk ≤ 150KB gzipped
+- [x] Framer Motion: confirm `LazyMotion` + `domAnimation` used — fixed Navbar.tsx to use `m` instead of `motion`
+- [x] No unused imports across components: run `npm run lint` → 0 warnings
+- [x] Check `_next/static` chunks in Network tab — First Load JS = 128 kB (≤ 150 kB target ✓)
 - [ ] Run Lighthouse locally (`npm run build && npm run start` then Lighthouse in Chrome):
   - [ ] Performance ≥ 90
   - [ ] Accessibility ≥ 95
