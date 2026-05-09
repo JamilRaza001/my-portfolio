@@ -5,7 +5,7 @@ import { MotionProvider } from '@/components/providers/MotionProvider';
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://jamil-portfolio.vercel.app'),
+  metadataBase: new URL('https://muhammadjamilrazaattari.vercel.app'),
   title: 'Muhammad Jamil Raza Attari — AI/ML Engineer',
   description:
     'AI/ML Engineer specialized in Agentic AI, RAG systems, and Computer Vision. Based in Karachi, Pakistan. Open to remote roles and freelance.',
