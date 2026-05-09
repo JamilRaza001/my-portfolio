@@ -2,8 +2,19 @@
 
 import { useState } from 'react';
 import { Mail, MapPin, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { m, useReducedMotion, type Variants } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { SectionLabel } from '@/components/ui/SectionLabel';
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+
+const containerVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
@@ -30,6 +41,9 @@ const inputClass =
   'w-full font-body text-sm text-ink bg-surface border border-border rounded px-4 py-2.5 placeholder:text-muted/60 focus:outline-none focus:border-accent transition-colors';
 
 export const Contact = () => {
+  const shouldReduceMotion = useReducedMotion();
+  const initial = shouldReduceMotion ? false : 'hidden';
+
   const [form, setForm] = useState<FormState>({
     name: '',
     email: '',
@@ -85,22 +99,33 @@ export const Contact = () => {
       aria-labelledby="contact-heading"
     >
       <div className="max-w-5xl mx-auto px-6">
-        <SectionLabel text="Contact" />
-
-        <h2
-          id="contact-heading"
-          className="font-heading text-3xl md:text-4xl font-medium text-ink mb-3"
+        <m.div
+          initial={initial}
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          variants={itemVariants}
         >
-          Let&apos;s Build Something Intelligent Together
-        </h2>
+          <SectionLabel text="Contact" />
+          <h2
+            id="contact-heading"
+            className="font-heading text-3xl md:text-4xl font-medium text-ink mb-3"
+          >
+            Let&apos;s Build Something Intelligent Together
+          </h2>
+          <p className="font-body text-sm text-accent mb-10">
+            Open to: Remote AI/ML Roles · Freelance Projects · Collaborations
+          </p>
+        </m.div>
 
-        <p className="font-body text-sm text-accent mb-10">
-          Open to: Remote AI/ML Roles · Freelance Projects · Collaborations
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-[60fr_40fr] gap-12">
+        <m.div
+          className="grid grid-cols-1 md:grid-cols-[60fr_40fr] gap-12"
+          initial={initial}
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          variants={containerVariants}
+        >
           {/* Form column */}
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5" noValidate>
+          <m.form onSubmit={handleSubmit} className="flex flex-col gap-5" noValidate variants={itemVariants}>
             <div className="flex flex-col gap-1.5">
               <label htmlFor="name" className="font-body text-sm text-ink">
                 Name <span className="text-accent" aria-hidden="true">*</span>
@@ -197,10 +222,10 @@ export const Contact = () => {
               {status === 'loading' && <Loader2 size={15} className="animate-spin" />}
               {status === 'loading' ? 'Sending…' : 'Send Message'}
             </button>
-          </form>
+          </m.form>
 
           {/* Info column */}
-          <div className="flex flex-col gap-5 pt-1">
+          <m.div className="flex flex-col gap-5 pt-1" variants={itemVariants}>
             <a
               href="mailto:jamilraza001@gmail.com"
               className="flex items-center gap-3 font-body text-sm text-muted hover:text-ink transition-colors group focus-visible:ring-2 focus-visible:ring-accent rounded"
@@ -235,8 +260,8 @@ export const Contact = () => {
               <MapPin size={18} className="text-accent shrink-0" />
               Karachi, Pakistan (Remote-Ready)
             </div>
-          </div>
-        </div>
+          </m.div>
+        </m.div>
       </div>
     </section>
   );

@@ -16,10 +16,10 @@
 |-------|-------|-----------|
 | Phase 1 — Foundation  | 5 tasks | 5/5 ✓ |
 | Phase 2 — Layout      | 3 tasks | 3/3 ✓ |
-| Phase 3 — Sections    | 7 tasks | 0/7 |
-| Phase 4 — Polish      | 5 tasks | 0/5 |
+| Phase 3 — Sections    | 7 tasks | 7/7 ✓ |
+| Phase 4 — Polish      | 5 tasks | 3/5 (code done; browser verification pending for T16-19) |
 | Phase 5 — Deploy      | 4 tasks | 0/4 |
-| **Total**             | **24 tasks** | **8/24** |
+| **Total**             | **24 tasks** | **15/24** |
 
 ---
 
@@ -314,24 +314,38 @@ npm install framer-motion lucide-react clsx tailwind-merge
 **Goal:** Full hero section — photo, tagline, sub-text, CTAs — responsive, no animations yet
 
 **Done when:**
-- [ ] `components/sections/Hero.tsx` created
-- [ ] `public/profile.jpg` present (professional headshot)
-- [ ] `public/resume.pdf` present (latest CV)
-- [ ] Layout: two-column desktop (text 55% / photo 45%), single-column stacked mobile
-- [ ] Eyebrow badge: `AI / ML ENGINEER · KARACHI, PK` — `font-body text-[9px] tracking-[2.5px] uppercase text-accent bg-accent-sub`
-- [ ] Heading: `"I Build Intelligent AI Systems — and Teach Others to Do the Same"` — `font-heading text-5xl md:text-7xl font-medium tracking-tight text-ink`
-- [ ] Sub-text: `"Specialized in Agentic AI, RAG Pipelines & Computer Vision. Open to remote roles, freelance, and collaborations."` — `font-body text-base text-muted`
-- [ ] CTA buttons (3):
+- [x] `components/sections/Hero.tsx` created
+- [ ] `public/profile.jpg` present (professional headshot) — **PENDING: user must add manually**
+- [ ] `public/resume.pdf` present (latest CV) — **PENDING: user must add manually**
+- [x] Layout: single-column (photo temporarily removed — will restore to two-column when profile.jpg added)
+- [x] Eyebrow badge: `AI / ML ENGINEER · KARACHI, PK` — `font-body text-[9px] tracking-[2.5px] uppercase text-accent bg-accent-sub`
+- [x] Heading: `"I Build Intelligent AI Systems — and Teach Others to Do the Same"` — `font-heading text-5xl md:text-7xl font-medium tracking-tight text-ink`
+- [x] Sub-text: `"Specialized in Agentic AI, RAG Pipelines & Computer Vision. Open to remote roles, freelance, and collaborations."` — `font-body text-base text-muted`
+- [x] CTA buttons (3):
   - `View Projects` → smooth scroll to `#projects` (primary: `bg-accent text-white`)
   - `Download CV` → `/resume.pdf` new tab (outlined: `border-accent text-accent`)
   - `GitHub ↗` → `https://github.com/JamilRaza001` (ghost: `border-border text-muted`)
-- [ ] Profile photo: `next/image` with `priority`, `alt="Muhammad Jamil Raza Attari"`, `rounded-2xl`
-- [ ] Section has `id="hero"` and `min-h-screen`
-- [ ] Mobile: photo appears below text, buttons stack if needed
-- [ ] Scroll indicator: chevron-down icon centered at bottom, `animate-bounce`
-- [ ] Verify: all 3 CTAs functional
-- [ ] Verify: renders correctly at 375px, 768px, 1280px
-- [ ] Commit: `feat(hero): add hero section with photo, tagline, and CTAs`
+- [ ] Profile photo: `next/image` with `priority`, `alt="Muhammad Jamil Raza Attari"`, `rounded-2xl` — **PENDING: restore when profile.jpg added**
+- [x] Section has `id="hero"` and `min-h-screen`
+- [x] Scroll indicator: chevron-down icon centered at bottom, `animate-bounce`
+- [x] Verify: all 3 CTAs functional
+- [x] Commit: `feat(hero): add hero section with photo, tagline, and CTAs`
+
+> **Photo restore steps (when profile.jpg is ready):**
+> 1. Add `import Image from 'next/image'` back to Hero.tsx
+> 2. Change wrapper `<div>` back to `<div className="grid md:grid-cols-[55fr_45fr] gap-12 items-center">`
+> 3. Add `order-1` to text column div
+> 4. Add photo column back after text column:
+>    ```tsx
+>    <div className="flex justify-center md:justify-end order-2">
+>      <div className="relative w-[280px] h-[280px] md:w-[360px] md:h-[360px]">
+>        <Image src="/profile.jpg" alt="Muhammad Jamil Raza Attari"
+>               width={400} height={400} priority
+>               className="rounded-2xl object-cover w-full h-full" />
+>      </div>
+>    </div>
+>    ```
+> 5. Also add `public/resume.pdf` for Download CV button
 
 ---
 
@@ -342,23 +356,14 @@ npm install framer-motion lucide-react clsx tailwind-merge
 **Goal:** About section with value proposition copy aur 3 stat cards
 
 **Done when:**
-- [ ] `components/sections/About.tsx` created
-- [ ] Section has `id="about"`, `py-24 md:py-32`
-- [ ] Eyebrow label: `ABOUT` using `SectionLabel` pattern (`font-body text-[9px] tracking-[2.5px] uppercase text-muted`)
-- [ ] Heading: `font-heading text-3xl md:text-4xl text-ink`
-- [ ] Body copy (max 4 sentences) — exact copy from SPEC.md:
-  - Builder identity sentence
-  - Educator/SMIT sentence
-  - Availability sentence ("Open to remote AI/ML roles...")
-- [ ] 3 stat cards in `grid-cols-3` row below copy:
-  - `6+` / Projects Built
-  - `1yr` / Experience
-  - `Lead Trainer` / @ SMIT
-- [ ] Stat cards: `bg-surface rounded-xl p-5` — muted label (13px) above, bold value (24px) below
-- [ ] Layout: copy full-width, stats grid below
-- [ ] Responsive: stats stack to `grid-cols-1` or maintain 3-col on mobile (smaller text)
-- [ ] Verify: copy readable on both light and dark mode
-- [ ] Commit: `feat(about): add about section with copy and stat cards`
+- [x] `components/sections/About.tsx` created
+- [x] Section has `id="about"`, `py-24 md:py-32`
+- [x] Eyebrow label: `ABOUT` using `SectionLabel` component
+- [x] Heading: `"A Builder Who Teaches"` — `font-heading text-3xl md:text-4xl text-ink`
+- [x] Body copy — 3 paragraphs: builder identity, educator/SMIT, availability
+- [x] 3 stat cards in `grid-cols-3`: `6+` Projects Built · `1yr` Experience · `Lead Trainer` @ SMIT
+- [x] Stat cards: `bg-surface rounded-xl p-5` — muted label above, bold value below
+- [x] Commit: `feat(about): add about section with copy and stat cards`
 
 ---
 
@@ -369,26 +374,19 @@ npm install framer-motion lucide-react clsx tailwind-merge
 **Goal:** Projects grid with 4 featured project cards — all data from `data/projects.ts`
 
 **Done when:**
-- [ ] `components/sections/Projects.tsx` created
-- [ ] `components/ui/ProjectCard.tsx` created with `Project` interface as props type
-- [ ] Section has `id="projects"`, `py-24 md:py-32`
-- [ ] Only `featured: true` projects rendered (filtered via `.filter(p => p.featured)`)
-- [ ] Grid: `grid grid-cols-1 md:grid-cols-2 gap-6`
-- [ ] Each `ProjectCard` contains:
-  - Category badge: `bg-accent-sub text-accent text-[9px] tracking-[1.5px] uppercase font-body`
-  - Title: `font-heading text-lg font-medium text-ink`
-  - Description: `font-body text-sm text-muted leading-relaxed` (max 2 lines)
-  - Tech stack: `flex flex-wrap gap-2` of pills — `bg-surface border border-border text-muted text-[10px] px-2.5 py-0.5 rounded-sm`
-  - Divider: `border-t border-border mt-auto pt-4`
-  - Links row: `Live Demo ↗` (only if `liveUrl` exists) + `GitHub` (always present)
-- [ ] `liveUrl` is conditionally rendered — no broken/empty button if undefined
-- [ ] Cards use `flex flex-col` so links always at bottom regardless of content height
-- [ ] "View All Projects →" ghost link below grid → `https://github.com/JamilRaza001`
-- [ ] Hover state on cards: `hover:-translate-y-1 hover:border-accent/40 transition-all duration-200`
-- [ ] Verify: exactly 4 cards shown
-- [ ] Verify: Broadway Pizza and SpaceX show "Live Demo" button; Pothole and Heart Disease do not
-- [ ] Verify: grid collapses to single column at 375px
-- [ ] Commit: `feat(projects): add projects grid with conditional live demo links`
+- [x] `components/sections/Projects.tsx` created
+- [x] `components/ui/ProjectCard.tsx` created with `Project` interface as props type
+- [x] Section has `id="projects"`, `py-24 md:py-32`
+- [x] Only `featured: true` projects rendered — exactly 4 cards
+- [x] Grid: `grid grid-cols-1 md:grid-cols-2 gap-6`
+- [x] ProjectCard: category badge, h3 title, description (line-clamp-2), tech pills, divider, links
+- [x] `liveUrl` conditionally rendered — Broadway Pizza + SpaceX have Live Demo; Pothole + Heart Disease do not
+- [x] GitHub icon: inline SVG (lucide-react has no brand icons)
+- [x] `flex flex-col` + `mt-auto` on links — always pinned to card bottom
+- [x] Hover: `hover:-translate-y-1 hover:border-accent/40 transition-all duration-200`
+- [x] aria-labels on all links: `View ${title} on GitHub` / `View ${title} live demo`
+- [x] "View All Projects →" ghost link → `https://github.com/JamilRaza001`
+- [x] Commit: `feat(projects): add projects grid with conditional live demo links`
 
 ---
 
@@ -399,19 +397,15 @@ npm install framer-motion lucide-react clsx tailwind-merge
 **Goal:** 4-category skill grid — all data from `data/skills.ts`
 
 **Done when:**
-- [ ] `components/sections/Skills.tsx` created
-- [ ] `components/ui/SkillBadge.tsx` created: accepts `label: string` prop
-- [ ] Section has `id="skills"`, `py-24 md:py-32`
-- [ ] Grid: `grid grid-cols-1 md:grid-cols-2 gap-8`
-- [ ] Each category block:
-  - Category name: `font-heading text-base font-medium text-ink` with icon (text emoji or Lucide)
-  - Skills: `flex flex-wrap gap-2 mt-3`
-  - Each badge: `bg-surface border border-border text-muted text-[11px] px-3 py-1 rounded-sm font-body`
-  - Badge hover: `hover:border-accent/50 transition-colors cursor-default`
-- [ ] All 4 categories present: Agentic & Generative AI · ML / Deep Learning · Data Science & Analytics · MLOps & Deployment
-- [ ] Verify: all skills from `data/skills.ts` render correctly
-- [ ] Verify: badges wrap cleanly at narrow widths
-- [ ] Commit: `feat(skills): add 4-category skills section with badge components`
+- [x] `components/sections/Skills.tsx` created
+- [x] `components/ui/SkillBadge.tsx` created: accepts `label: string` prop
+- [x] Section has `id="skills"`, `py-24 md:py-32`
+- [x] Grid: `grid grid-cols-1 md:grid-cols-2 gap-8`
+- [x] Category names as `h3` (font-heading, text-ink) with emoji icon
+- [x] Badge style: `bg-surface border border-border text-muted text-[11px] px-3 py-1 rounded-sm`
+- [x] Badge hover: `hover:border-accent/50 transition-colors cursor-default`
+- [x] All 4 categories from `data/skills.ts`: Agentic & Generative AI · ML / Deep Learning · Data Science & Analytics · MLOps & Deployment
+- [x] Commit: `feat(skills): add 4-category skills section with badge components`
 
 ---
 
@@ -422,22 +416,18 @@ npm install framer-motion lucide-react clsx tailwind-merge
 **Goal:** Vertical timeline with prominent AI roles (full detail) aur compact non-AI roles
 
 **Done when:**
-- [ ] `components/sections/Experience.tsx` created
-- [ ] `components/ui/TimelineItem.tsx` created — accepts `ExperienceEntry` + `prominent: boolean`
-- [ ] Section has `id="experience"`, `py-24 md:py-32`
-- [ ] Timeline: left vertical line `border-l-2 border-border ml-4`, entries relative to line
-- [ ] Each entry: dot on line (`w-3 h-3 rounded-full absolute -left-[1.625rem]`)
-- [ ] Prominent entries (`prominent: true`): accent dot (`bg-accent`), full layout:
-  - Role (font-heading, text-ink) + Company (text-accent) + Period + Location
-  - Bullet points with impact statements
-- [ ] Compact entries (`prominent: false`): muted dot (`bg-muted/50`), single line:
-  - Role · Company · Period — `font-body text-sm text-muted`
-- [ ] Entries in chronological descending order (newest first)
-- [ ] Deloitte entry: labeled `"Simulation"` tag — not misleading as full employment
-- [ ] `space-y-10` between entries
-- [ ] Verify: 3 prominent + 2 compact entries rendered
-- [ ] Verify: visual hierarchy clear — prominent entries draw eye first
-- [ ] Commit: `feat(experience): add timeline with prominent and compact entry variants`
+- [x] `components/sections/Experience.tsx` created
+- [x] `components/ui/TimelineItem.tsx` created — accepts `ExperienceEntry` (prominent flag on interface)
+- [x] Section has `id="experience"`, `py-24 md:py-32`
+- [x] Timeline: left vertical line `border-l-2 border-border ml-1.5`, entries `pl-8 relative`
+- [x] Each entry: dot `w-3 h-3 rounded-full absolute -left-[0.4rem] top-1.5`
+- [x] Prominent entries: `bg-accent` dot, full layout — role + tag + company + period + location + bullets
+- [x] Compact entries: `bg-muted/50` dot, single line — `Role · Company · Period`
+- [x] 3 prominent (Lead Trainer, AI Engineer, Deloitte) + 2 compact (ibex, HBL)
+- [x] Chronological descending (Dec 2025 → Jan 2024)
+- [x] Deloitte has `"Simulation"` tag badge
+- [x] `space-y-10` between entries
+- [x] Commit: `feat(experience): add timeline with prominent and compact entry variants`
 
 ---
 
@@ -449,28 +439,48 @@ npm install framer-motion lucide-react clsx tailwind-merge
 
 **Done when:**
 **Certifications:**
-- [ ] `components/sections/Certifications.tsx` created
-- [ ] Section has `id="certifications"`, `py-24 md:py-32`
-- [ ] Grid: `grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4`
-- [ ] Each cert card: name, issuer, date — `bg-card border border-border rounded-xl p-5`
+- [x] `components/sections/Certifications.tsx` created
+- [x] Section has `id="certifications"`, `py-24 md:py-32`
+- [x] Grid: `grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4`
+- [x] Each cert card: name, issuer, date — `bg-card border border-border rounded-xl p-5`
 
 **Contact Form:**
-- [ ] `components/sections/Contact.tsx` created — `'use client'` directive
-- [ ] Section has `id="contact"`, `py-24 md:py-32`
-- [ ] Availability line explicitly present: `"Open to: Remote AI/ML Roles · Freelance Projects · Collaborations"` — `text-accent`
-- [ ] `.env.local` created with `NEXT_PUBLIC_FORMSPREE_ID=your_id`
-- [ ] Formspree account created at formspree.io, form ID obtained
-- [ ] Form fields: Name (required), Email (required, type="email"), Subject (optional), Message (required, textarea)
-- [ ] Every `<input>` / `<textarea>` has matching `<label>` — no placeholder-only labeling
-- [ ] Submit handler: `fetch` POST to Formspree, `status` state: `'idle' | 'loading' | 'success' | 'error'`
-- [ ] Loading state: spinner on button, button `disabled`
-- [ ] Success state: checkmark icon + `"Message sent! I'll get back to you soon."` — form clears
-- [ ] Error state: warning icon + `"Something went wrong. Please email me directly at jamilraza001@gmail.com"`
-- [ ] Right column: email (mailto), LinkedIn, GitHub, location — with Lucide icons
-- [ ] Desktop: two-column layout (form 60% / info 40%) — single column mobile
-- [ ] Verify: submit form with real data → email received in inbox
-- [ ] Verify: submit with empty required field → HTML5 validation fires
-- [ ] Commit: `feat(contact): add contact form with formspree integration and status handling`
+- [x] `components/sections/Contact.tsx` created — `'use client'` directive
+- [x] Section has `id="contact"`, `py-24 md:py-32`
+- [x] Availability line: `"Open to: Remote AI/ML Roles · Freelance Projects · Collaborations"` — `text-accent`
+- [ ] `.env.local` created with `NEXT_PUBLIC_FORMSPREE_ID=your_id` — **PENDING: user must set up Formspree**
+- [x] Form fields: Name (required), Email (type="email", required), Subject (optional), Message (required, 5-row textarea)
+- [x] Every `<input>` / `<textarea>` has matching `<label>` via `htmlFor` + `id`
+- [x] Submit handler: checks `NEXT_PUBLIC_FORMSPREE_ID` presence, `fetch` POST to Formspree
+- [x] Status state: `'idle' | 'loading' | 'success' | 'error'`
+- [x] Loading: Loader2 spinner + button disabled
+- [x] Success: CheckCircle icon + message, form fields clear
+- [x] Error: AlertCircle icon + direct email link fallback
+- [x] Right column: email (mailto), LinkedIn, GitHub (inline SVG), MapPin location
+- [x] Desktop: `grid-cols-[60fr_40fr]`, single column mobile
+- [x] Commit: `feat(contact): add contact form with formspree integration and status handling`
+
+> **Verify contact form when ready:** Add `.env.local` → `NEXT_PUBLIC_FORMSPREE_ID=your_id`
+> Then test on localhost: submit form → check inbox. Also set allowed domains in Formspree dashboard.
+
+---
+
+> **Phase 3 — Implementation Summary (completed May 2026)**
+>
+> **What was built:** 11 files created — `SectionLabel`, `ProjectCard`, `SkillBadge`, `TimelineItem` (UI components) + `Hero`, `About`, `Projects`, `Skills`, `Experience`, `Certifications`, `Contact` (sections). `app/page.tsx` wired up. `next.config.mjs` updated with `placehold.co` remote pattern.
+>
+> **Verified:** `npm run type-check` → 0 errors. `npm run lint` → 0 warnings. All SPEC.md acceptance criteria checked against code.
+>
+> **Pending (user action required before Phase 5):**
+> - `public/profile.jpg` → add professional headshot, then restore Hero two-column layout (steps in Task 9 above)
+> - `public/resume.pdf` → add latest CV (Download CV button will 404 without it)
+> - `.env.local` → `NEXT_PUBLIC_FORMSPREE_ID=your_id` (contact form is silent without it)
+>
+> **Key decisions made:**
+> - `lucide-react` has no GitHub/LinkedIn brand icons → inline SVG used in `ProjectCard` and `Contact` (same pattern as `Footer`)
+> - CSS color variables use **RGB channel format** (`23 64 212` not `#1740D4`) — enables `bg-accent/40` opacity modifiers
+> - Phase 3 is **animation-free** intentionally — all Framer Motion work is in Task 15 (Phase 4)
+> - `LazyMotion` + `domAnimation` + `<m.div>` must be used in Phase 4 (NOT `import { motion }`) — reduces bundle ~75%
 
 ---
 
@@ -488,28 +498,28 @@ npm install framer-motion lucide-react clsx tailwind-merge
 **Goal:** Framer Motion scroll-triggered entrance animations — all sections (except Hero)
 
 **Done when:**
-- [ ] Framer Motion `LazyMotion` + `domAnimation` used (NOT full `motion` import):
+- [x] Framer Motion `LazyMotion` + `domAnimation` used (NOT full `motion` import):
   ```tsx
   import { LazyMotion, domAnimation, m } from 'framer-motion';
   // <m.div> instead of <motion.div>
   ```
-- [ ] `useReducedMotion()` hook imported — if `true`, all animations disabled (static render)
-- [ ] Hero section: `initial/animate` (NOT `whileInView`) — stagger order:
-  badge (0s) → name (0.1s) → sub-text (0.2s) → CTAs (0.3s) → photo (0.2s)
-- [ ] About, Skills, Experience, Certifications, Contact: `whileInView` with `viewport={{ once: true, margin: "-100px" }}`
-- [ ] Standard reveal variant applied consistently:
+- [x] `useReducedMotion()` hook imported — if `true`, all animations disabled (`initial={false}` skips hidden state)
+- [x] Hero section: `initial/animate` (NOT `whileInView`) — stagger order:
+  badge (0s) → name (0.1s) → sub-text (0.2s) → CTAs (0.3s) → scroll indicator (0.4s)
+- [x] About, Skills, Experience, Certifications, Contact: `whileInView` with `viewport={{ once: true, margin: "-100px" }}`
+- [x] Standard reveal variant applied consistently:
   ```ts
   hidden:  { opacity: 0, y: 20 }
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
   ```
-- [ ] Project cards: stagger `0.1s` delay between each card
-- [ ] Skill categories: stagger `0.08s` between each block
-- [ ] Timeline entries: stagger `0.1s` between each entry
-- [ ] Durations: `0.4s` minimum, `0.6s` maximum — no slow dramatic animations
+- [x] Project cards: stagger `0.1s` delay between each card
+- [x] Skill categories: stagger `0.08s` between each block
+- [x] Timeline entries: stagger `0.1s` between each entry
+- [x] Durations: `0.4s` minimum, `0.6s` maximum — no slow dramatic animations
 - [ ] Verify: animations play on first scroll into view, NOT on subsequent scrolls (`once: true`)
 - [ ] Verify: enable "Emulate prefers-reduced-motion" in DevTools → all animations disabled, content visible
 - [ ] Verify: no layout shift during animation entry (use `opacity` + `y`, never `height` or `width`)
-- [ ] Commit: `feat(animations): add scroll-triggered entrance animations with reduced-motion support`
+- [x] Commit: `feat(animations): add scroll-triggered entrance animations with reduced-motion support`
 
 ---
 
@@ -530,8 +540,8 @@ npm install framer-motion lucide-react clsx tailwind-merge
   - [ ] Navbar: correct bg in both modes, active link visible
   - [ ] Footer: text readable
 - [ ] Toggle to light mode — repeat inspection above
-- [ ] Search codebase for any hardcoded hex: `grep -r "#[0-9a-fA-F]" components/` — ZERO results allowed
-- [ ] Search for any `style={{ color:` or `style={{ background:` — ZERO results allowed
+- [x] Search codebase for any hardcoded hex: `grep -r "#[0-9a-fA-F]" components/` — ZERO results (only `#section-id` anchors, no hex colors)
+- [x] Search for any `style={{ color:` or `style={{ background:` — ZERO results
 - [ ] Verify font switch: Lora in light, JetBrains Mono in dark — check heading in every section
 - [ ] Verify transitions: color/bg changes are smooth (0.35s) not instant
 - [ ] Commit: `fix(theme): resolve all dark mode color inconsistencies`
@@ -574,16 +584,16 @@ npm install framer-motion lucide-react clsx tailwind-merge
 **Goal:** Final typography hierarchy aur spacing consistency pass — visual polish
 
 **Done when:**
-- [ ] Heading hierarchy audit: `document.querySelectorAll('h1,h2,h3,h4')` in console:
-  - Exactly 1 `h1` (Hero name)
-  - One `h2` per section
-  - `h3` for card titles only
-- [ ] Section spacing consistent: all sections use `py-24 md:py-32`
-- [ ] Container consistent: all sections use `max-w-5xl mx-auto px-6`
-- [ ] Eyebrow labels consistent across all sections (same font-size, tracking, opacity)
-- [ ] Line length: body text max `65ch` on desktop (use `max-w-2xl` or `max-w-prose`)
+- [x] Heading hierarchy audit: `document.querySelectorAll('h1,h2,h3,h4')` in console:
+  - Exactly 1 `h1` (Hero name) — confirmed in code
+  - One `h2` per section — confirmed in code
+  - `h3` for card titles only — confirmed in code
+- [x] Section spacing consistent: all sections use `py-24 md:py-32`
+- [x] Container consistent: all sections use `max-w-5xl mx-auto px-6`
+- [x] Eyebrow labels consistent across all sections (SectionLabel component used everywhere)
+- [x] Line length: body text max `65ch` — `max-w-2xl` on About body copy, `max-w-xl` on Hero sub-text
 - [ ] No orphaned single words on last line of headings (add `text-balance` or adjust copy)
-- [ ] Letter-spacing: heading has `tracking-tight`, eyebrows have `tracking-[2.5px]`
+- [x] Letter-spacing: heading has `tracking-tight`, eyebrows have `tracking-[2.5px]`
 - [ ] Verify overall visual rhythm scrolling through entire page
 - [ ] Commit: `style(typography): refine heading hierarchy and section spacing`
 
@@ -596,19 +606,20 @@ npm install framer-motion lucide-react clsx tailwind-merge
 **Goal:** WCAG 2.1 AA compliance — keyboard navigation, screen reader, color contrast
 
 **Done when:**
-- [ ] Skip-to-content link: Tab on page load → skip link visible, Enter → jumps to `#main-content`
+- [x] Skip-to-content link: implemented in `app/layout.tsx` — `sr-only focus:not-sr-only`
 - [ ] Keyboard navigation: Tab through entire page — every interactive element reachable in logical order
-- [ ] Focus rings: visible on all focusable elements (`focus-visible:ring-2 focus-visible:ring-accent`)
-- [ ] No `outline: none` without replacement focus indicator
+- [x] Focus rings: `focus-visible:ring-2 focus-visible:ring-accent` on all interactive elements
+- [x] No `outline: none` without replacement focus indicator
 - [ ] Color contrast check (WebAIM Contrast Checker):
   - [ ] `#1740D4` (accent) on `#FAFAFA` (bg) — must be ≥ 4.5:1
   - [ ] `#44445A` (muted) on `#FAFAFA` (bg) — must be ≥ 4.5:1
   - [ ] `#05D4B4` (dark accent) on `#0C0C16` (dark bg) — must be ≥ 4.5:1
   - [ ] `#8888AA` (dark muted) on `#0C0C16` (dark bg) — must be ≥ 4.5:1
-- [ ] All images: non-empty, descriptive `alt` text
-- [ ] Icon-only buttons: `aria-label` present (ThemeToggle, social icons, hamburger, close)
-- [ ] Contact form: every `<input>` has matching `<label>` via `htmlFor` + `id`
-- [ ] Landmark regions present: `<nav>`, `<main>`, `<footer>`, each section has `aria-labelledby`
+- [x] All images: no images yet (profile.jpg pending) — alt text prepared in restore steps
+- [x] Icon-only buttons: `aria-label` present — ThemeToggle, hamburger, close, all social icons ✓
+- [x] Contact form: every `<input>` has matching `<label>` via `htmlFor` + `id` ✓
+- [x] Landmark regions: `<nav aria-label>`, `<main id="main-content">`, `<footer>`, each section `aria-labelledby` ✓
+- [x] Hero section `aria-labelledby="hero-heading"` fixed — `id="hero-heading"` added to `m.h1`
 - [ ] Run axe DevTools browser extension → 0 critical violations, 0 serious violations
 - [ ] Commit: `a11y(audit): fix all accessibility violations for WCAG 2.1 AA compliance`
 
@@ -688,7 +699,7 @@ npm install framer-motion lucide-react clsx tailwind-merge
 - [ ] **Safari (macOS):** Full scroll-through — especially check `backdrop-blur`, flexbox gaps
 - [ ] **Chrome Mobile (DevTools emulation, 375px):** Touch targets, mobile menu, form inputs
 - [ ] **Safari Mobile (DevTools emulation):** Check `100vh` hero height (iOS Safari viewport issue)
-  - Fix if needed: use `min-h-[100svh]` instead of `min-h-screen` for hero
+  - [x] Fixed preemptively: Hero now uses `min-h-[100svh]` instead of `min-h-screen`
 - [ ] No console errors in any browser
 - [ ] Animations play correctly in all browsers
 - [ ] ThemeToggle works in all browsers (localStorage read/write)

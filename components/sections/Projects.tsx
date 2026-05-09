@@ -1,9 +1,24 @@
+'use client';
+
 import Link from 'next/link';
+import { m, useReducedMotion, type Variants } from 'framer-motion';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 import { ProjectCard } from '@/components/ui/ProjectCard';
 import { projects } from '@/data/projects';
 
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+
+const containerVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
+
 export const Projects = () => {
+  const shouldReduceMotion = useReducedMotion();
+  const initial = shouldReduceMotion ? false : 'hidden';
   const featured = projects.filter((p) => p.featured);
 
   return (
@@ -13,22 +28,42 @@ export const Projects = () => {
       aria-labelledby="projects-heading"
     >
       <div className="max-w-5xl mx-auto px-6">
-        <SectionLabel text="Featured Projects" />
-
-        <h2
-          id="projects-heading"
-          className="font-heading text-3xl md:text-4xl font-medium text-ink mb-10"
+        <m.div
+          initial={initial}
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          variants={itemVariants}
         >
-          Things I&apos;ve Built
-        </h2>
+          <SectionLabel text="Featured Projects" />
+          <h2
+            id="projects-heading"
+            className="font-heading text-3xl md:text-4xl font-medium text-ink mb-10"
+          >
+            Things I&apos;ve Built
+          </h2>
+        </m.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <m.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          initial={initial}
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          variants={containerVariants}
+        >
           {featured.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <m.div key={project.id} variants={itemVariants}>
+              <ProjectCard project={project} />
+            </m.div>
           ))}
-        </div>
+        </m.div>
 
-        <div className="mt-8 flex justify-center">
+        <m.div
+          className="mt-8 flex justify-center"
+          initial={initial}
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          variants={itemVariants}
+        >
           <Link
             href="https://github.com/JamilRaza001"
             target="_blank"
@@ -38,7 +73,7 @@ export const Projects = () => {
           >
             View All Projects →
           </Link>
-        </div>
+        </m.div>
       </div>
     </section>
   );
